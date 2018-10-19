@@ -1,5 +1,5 @@
 export const HostURLsMapping = {
-  'localhost': 'https://esrefarch-demo-trader-app.cfapps.io',
+  'localhost': 'https://localhost:8080',
   'esrefarch-demo-trader-ui-reflective-roan.cfapps.io': 'https://esrefarch-demo-trader-app-shiny-oryx.cfapps.io',
   'devoxxtrader.cfapps.io': 'https://esrefarch-demo-trader-app-shiny-oryx.cfapps.io',
 };
