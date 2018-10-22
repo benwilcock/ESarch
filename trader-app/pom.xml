@@ -57,6 +57,27 @@
                     </baseClassMappings>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>0.9.11</version>
+                <configuration>
+                    <from>
+                        <image>openjdk:8-alpine</image>
+                        <credHelper>osxkeychain</credHelper>
+                    </from>
+                    <to>
+                        <image>registry.hub.docker.com/benwilcock/trader-app</image>
+                        <credHelper>osxkeychain</credHelper>
+                    </to>
+                    <container>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

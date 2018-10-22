@@ -18,6 +18,27 @@
 
 	<build>
 		<finalName>${artifactId}</finalName>
+        <plugins>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>0.9.11</version>
+				<configuration>
+					<from>
+						<image>openjdk:8-alpine</image>
+						<credHelper>osxkeychain</credHelper>
+					</from>
+					<to>
+						<image>registry.hub.docker.com/benwilcock/trading-engine</image>
+						<credHelper>osxkeychain</credHelper>
+					</to>
+					<container>
+						<ports>
+							<port>8081</port>
+						</ports>
+					</container>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
-
 </project>
