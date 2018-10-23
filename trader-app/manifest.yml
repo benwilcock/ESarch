@@ -10,7 +10,6 @@ applications:
   services:
     - appdb
     - rabbit
-    - config
     - registry
   env:
     TRUST_CERTS: api.run.pivotal.io
