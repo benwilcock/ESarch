@@ -6,6 +6,80 @@
 	},
 	"item": [
 		{
+			"name": "RegistryHealth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{registryURL}}/actuator/health",
+					"protocol": "http",
+					"host": [
+						"{{registryURL}}"
+					],
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegistryApps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3909a331-8d30-4dd6-9b92-98c5311baf13",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"appOne\", jsonData.applications.application[0].name);",
+							"postman.setEnvironmentVariable(\"appTwo\", jsonData.applications.application[1].name);",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"TRADER-APP\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"TRADING-ENGINE\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{registryURL}}/eureka/apps",
+					"protocol": "http",
+					"host": [
+						"{{registryURL}}"
+					],
+					"path": [
+						"eureka",
+						"apps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "TraderAppHealth",
 			"event": [
 				{
@@ -92,6 +166,49 @@
 			"response": []
 		},
 		{
+			"name": "TraderAppConfigProps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41912760-cddf-4709-a647-94250b1b8acc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"UP\");",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{appURL}}/actuator/configprops",
+					"protocol": "http",
+					"host": [
+						"{{appURL}}"
+					],
+					"path": [
+						"actuator",
+						"configprops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "TraderEngineHealth",
 			"event": [
 				{
@@ -129,6 +246,49 @@
 					"path": [
 						"actuator",
 						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TraderEngineConfigProps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41912760-cddf-4709-a647-94250b1b8acc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"UP\");",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{engineURL}}/actuator/configprops",
+					"protocol": "http",
+					"host": [
+						"{{engineURL}}"
+					],
+					"path": [
+						"actuator",
+						"configprops"
 					]
 				}
 			},
