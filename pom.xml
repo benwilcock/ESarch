@@ -22,6 +22,7 @@
         <module>trader-app</module>
         <module>trading-engine</module>
         <module>discovery-server</module>
+        <module>twitter-service</module>
     </modules>
 
     <properties>

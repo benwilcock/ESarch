@@ -1,0 +1,13 @@
+---
+applications:
+- name: esrefarch-demo-twitter-service
+  path: target/twitter-service.jar
+  timeout: 120
+  instances: 1
+  buildpacks: 
+    - java_buildpack
+  health-check-type: port
+  services:
+    - rabbit
+  env:
+    TRUST_CERTS: api.run.pivotal.io
